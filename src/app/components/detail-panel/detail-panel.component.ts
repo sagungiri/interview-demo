@@ -13,11 +13,12 @@ export class DetailPanelComponent implements OnInit {
 
   public elementTypes: Array<ElementType>;
 
-  constructor(private readonly mainService: MainService) {}
+  constructor(private readonly mainService: MainService, private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
     (async () => {
       this.elementTypes = await this.mainService.getAllElementTypes().toPromise();
+      this.changeDetector.markForCheck();
     })();
   }
 }
